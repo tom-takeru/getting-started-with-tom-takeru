@@ -81,6 +81,7 @@
         "noInvalidConstructorSuper": "error",
         "noUnsafeOptionalChaining": "error",
         "noUnusedVariables": "warn",
+        "noUnusedImports": "error",
         "noVoidElementsWithChildren": "error",
         "noVoidTypeReturn": "error",
         "useIsNan": "error",
