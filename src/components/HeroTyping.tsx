@@ -3,7 +3,7 @@ import { Typewriter } from 'react-simple-typewriter';
 export default function HeroTyping() {
   return (
     <h1
-      className='text-5xl font-extrabold'
+      className='text-5xl font-extrabold font-console tracking-wider'
       aria-label='tom-takeru introduction'
     >
       I'm a{' '}
