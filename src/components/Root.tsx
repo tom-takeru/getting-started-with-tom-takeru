@@ -1,4 +1,7 @@
+'use client';
+
 import CustomLink from '@/components/CustomLink';
+import HeroTyping from '@/components/HeroTyping';
 import {
   SiDocker,
   SiGithub,
@@ -13,14 +16,6 @@ import {
 } from 'react-icons/si';
 
 // 定数定義
-const HERO = {
-  name: 'tom-takeru',
-  roles: [
-    { label: 'Full-Stack Engineer', emoji: '💻', aria: 'laptop' },
-    { label: 'Coffee Lover', emoji: '☕', aria: 'coffee' },
-    { label: 'Board Game Enthusiast', emoji: '🎲', aria: 'game' },
-  ],
-};
 
 const ABOUT = {
   city: 'Tokyo',
@@ -165,26 +160,7 @@ export default function Root() {
       {/* Hero Section */}
       <section className='flex items-center justify-center h-screen bg-gradient-to-b from-purple-600 to-indigo-600 text-white'>
         <div className='text-center p-8'>
-          <h1 className='text-5xl font-extrabold mb-4'>
-            Hey, I’m{' '}
-            <span className='underline decoration-yellow-300'>{HERO.name}</span>
-            !
-            <span role='img' aria-label='waving hand'>
-              👋
-            </span>
-          </h1>
-          <p className='text-xl'>
-            {HERO.roles.map((role, i) => (
-              <span key={role.label}>
-                {i > 0 && ' · '}
-                {role.label}
-                <span role='img' aria-label={role.aria}>
-                  {' '}
-                  {role.emoji}
-                </span>
-              </span>
-            ))}
-          </p>
+          <HeroTyping />
         </div>
       </section>
 
