@@ -16,5 +16,6 @@
   "editor.codeActionsOnSave": {
     "quickfix.biome": "always",
     "source.organizeImports.biome": "always"
-  }
+  },
+  "cSpell.words": ["Forem", "Qiita"]
 }
