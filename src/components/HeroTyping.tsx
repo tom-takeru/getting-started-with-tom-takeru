@@ -6,7 +6,7 @@ export default function HeroTyping() {
       className='text-5xl font-extrabold font-console tracking-wider'
       aria-label='tom-takeru introduction'
     >
-      I'm a{' '}
+      I'm{' '}
       <Typewriter
         words={[
           'tom-takeru!',
