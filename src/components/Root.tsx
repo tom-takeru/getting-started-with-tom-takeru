@@ -158,7 +158,7 @@ export default function Root() {
   return (
     <div className='min-h-screen bg-gray-50 text-gray-800 font-sans'>
       {/* Hero Section */}
-      <section className='flex items-center justify-center h-screen bg-gradient-to-b from-purple-600 to-indigo-600 text-white'>
+      <section className='flex items-center justify-center h-dvh bg-gradient-to-b from-purple-600 to-indigo-600 text-white'>
         <div className='text-center p-8'>
           <HeroTyping />
         </div>
