@@ -166,7 +166,7 @@ export default function Root() {
 
   return (
     <div className='min-h-screen bg-gray-50 text-gray-800 font-sans'>
-      <section className='flex items-center justify-center h-dvh bg-gradient-to-br from-blue-200 via-indigo-200 to-purple-200 text-gray-900 relative overflow-hidden'>
+      <section className='flex items-center justify-center h-svh bg-gradient-to-br from-blue-200 via-indigo-200 to-purple-200 text-gray-900 relative overflow-hidden'>
         <div className='absolute inset-0 bg-grid-pattern opacity-5' />
         <div className='text-center p-8 relative z-10'>
           <div className='mb-6'>
@@ -236,8 +236,9 @@ export default function Root() {
               </h2>
             </div>
             <p className='text-gray-600 max-w-2xl mx-auto'>
-              Here are the main technologies I work with. Each tool is carefully
-              selected for building scalable, maintainable applications.
+              Here are the main technologies I work with and explore in my
+              personal projects. These tools empower me to create scalable and
+              maintainable applications.
             </p>
           </div>
           <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4'>
