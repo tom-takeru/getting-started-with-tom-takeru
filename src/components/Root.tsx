@@ -270,7 +270,7 @@ export default function Root() {
             <div className='inline-flex items-center px-4 py-2 bg-yellow-50 border border-yellow-200 rounded-lg text-sm text-yellow-800'>
               📋{' '}
               <span className='ml-2'>
-                Each technology represents years of hands-on experience
+                I focus on delivering value and impactful solutions.
               </span>
             </div>
           </div>
