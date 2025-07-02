@@ -155,10 +155,21 @@ const ORGANIZATIONS = [
 ];
 
 export default function Root() {
+  const handleStartExploring = () => {
+    // About Sectionまでスムーズにスクロール
+    const aboutSection = document.querySelector('#about-section');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
+
   return (
     <div className='min-h-screen bg-gray-50 text-gray-800 font-sans'>
       {/* Hero Section */}
-      <section className='flex items-center justify-center h-dvh bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 text-gray-900 relative overflow-hidden'>
+      <section className='flex items-center justify-center h-dvh bg-gradient-to-br from-blue-200 via-indigo-200 to-purple-200 text-gray-900 relative overflow-hidden'>
         <div className='absolute inset-0 bg-grid-pattern opacity-5' />
         <div className='text-center p-8 relative z-10'>
           <div className='mb-6'>
@@ -175,6 +186,7 @@ export default function Root() {
           <div className='mt-8 flex justify-center'>
             <button
               type='button'
+              onClick={handleStartExploring}
               className='bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-medium transition-colors shadow-lg'
             >
               Start Exploring →
@@ -184,7 +196,7 @@ export default function Root() {
       </section>
 
       {/* About Section */}
-      <section className='py-16 px-4 max-w-4xl mx-auto'>
+      <section id='about-section' className='py-16 px-4 max-w-4xl mx-auto'>
         <div className='bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12'>
           <div className='flex items-center mb-6'>
             <div className='bg-indigo-100 text-indigo-600 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4'>
@@ -199,7 +211,7 @@ export default function Root() {
           </div>
           <div className='bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-lg'>
             <p className='leading-relaxed text-gray-700'>
-              Based in {ABOUT.city}
+              I'm tom-takeru. Based in {ABOUT.city}
               <span role='img' aria-label='tokyo tower' className='mx-1'>
                 {ABOUT.emoji}
               </span>
