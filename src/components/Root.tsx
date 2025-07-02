@@ -15,8 +15,6 @@ import {
   SiX,
 } from 'react-icons/si';
 
-// 定数定義
-
 const ABOUT = {
   city: 'Japan',
   emoji: '🇯🇵',
@@ -156,7 +154,7 @@ const ORGANIZATIONS = [
 
 export default function Root() {
   const handleStartExploring = () => {
-    // About Sectionまでスムーズにスクロール
+    // Smooth scroll to About Section
     const aboutSection = document.querySelector('#about-section');
     if (aboutSection) {
       aboutSection.scrollIntoView({
@@ -168,7 +166,6 @@ export default function Root() {
 
   return (
     <div className='min-h-screen bg-gray-50 text-gray-800 font-sans'>
-      {/* Hero Section */}
       <section className='flex items-center justify-center h-dvh bg-gradient-to-br from-blue-200 via-indigo-200 to-purple-200 text-gray-900 relative overflow-hidden'>
         <div className='absolute inset-0 bg-grid-pattern opacity-5' />
         <div className='text-center p-8 relative z-10'>
@@ -195,7 +192,6 @@ export default function Root() {
         </div>
       </section>
 
-      {/* About Section */}
       <section id='about-section' className='py-16 px-4 max-w-4xl mx-auto'>
         <div className='bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12'>
           <div className='flex items-center mb-6'>
@@ -225,7 +221,6 @@ export default function Root() {
         </div>
       </section>
 
-      {/* Skills Section */}
       <section className='py-16 bg-gradient-to-b from-gray-50 to-white'>
         <div className='max-w-4xl mx-auto px-4'>
           <div className='text-center mb-12'>
@@ -277,7 +272,6 @@ export default function Root() {
         </div>
       </section>
 
-      {/* Projects Section */}
       <section className='py-16 px-4 max-w-5xl mx-auto'>
         <div className='text-center mb-12'>
           <div className='flex items-center justify-center mb-6'>
@@ -360,7 +354,6 @@ export default function Root() {
         </div>
       </section>
 
-      {/* Organizations Section */}
       <section className='py-16 px-4 max-w-4xl mx-auto'>
         <div className='text-center mb-12'>
           <div className='flex items-center justify-center mb-6'>
@@ -416,7 +409,6 @@ export default function Root() {
         </div>
       </section>
 
-      {/* Articles Section */}
       <section className='py-16 px-4 max-w-4xl mx-auto bg-gray-50'>
         <div className='text-center mb-12'>
           <div className='flex items-center justify-center mb-6'>
@@ -481,7 +473,6 @@ export default function Root() {
         </div>
       </section>
 
-      {/* Links Section */}
       <section className='py-16 bg-white'>
         <div className='max-w-4xl mx-auto px-4 text-center'>
           <div className='flex items-center justify-center mb-8'>
@@ -522,7 +513,6 @@ export default function Root() {
         </div>
       </section>
 
-      {/* Contact Section */}
       <section className='py-16 bg-gradient-to-br from-indigo-600 via-indigo-700 to-purple-700 text-white relative overflow-hidden'>
         <div className='absolute inset-0 bg-grid-pattern opacity-10' />
         <div className='max-w-4xl mx-auto px-4 text-center relative z-10'>
