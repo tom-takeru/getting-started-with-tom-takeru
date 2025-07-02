@@ -6,13 +6,12 @@ export default function HeroTyping() {
       className='text-lg sm:text-2xl md:text-4xl lg:text-5xl font-extrabold font-console tracking-wider whitespace-nowrap'
       aria-label='tom-takeru introduction'
     >
-      I'm{' '}
       <Typewriter
         words={[
-          'tom-takeru!',
-          'Full-Stack Engineer!',
-          'Coffee Lover!',
-          'Board Game Enthusiast!',
+          "Hi there! I'm tom-takeru",
+          'I build web applications',
+          'Coffee fuels my coding',
+          "Let's play board games!",
         ]}
         loop={true}
         cursor
