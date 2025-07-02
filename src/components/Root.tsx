@@ -33,22 +33,6 @@ const SKILLS = [
 
 const PROJECTS = [
   {
-    name: 'Board Game Prototype Service (Coming Soon)',
-    emoji: '🎲',
-    aria: 'game',
-    description: 'This service is coming soon. Stay tuned!',
-    href: undefined,
-    disabled: true,
-    repos: [
-      {
-        name: 'Board Game Prototype (GitHub)',
-        url: 'https://github.com/habitat-hub/board-game-prototype',
-        icon: SiGithub,
-        label: 'github',
-      },
-    ],
-  },
-  {
     name: 'AI Discussion Service',
     emoji: '🤖',
     aria: 'robot',
@@ -69,6 +53,22 @@ const PROJECTS = [
       {
         name: 'Official Site (GitHub)',
         url: 'https://github.com/habitat-hub/official-site',
+        icon: SiGithub,
+        label: 'github',
+      },
+    ],
+  },
+  {
+    name: 'Board Game Prototype Service (Coming Soon)',
+    emoji: '🎲',
+    aria: 'game',
+    description: 'This service is coming soon. Stay tuned!',
+    href: undefined,
+    disabled: true,
+    repos: [
+      {
+        name: 'Board Game Prototype (GitHub)',
+        url: 'https://github.com/habitat-hub/board-game-prototype',
         icon: SiGithub,
         label: 'github',
       },
@@ -186,7 +186,7 @@ export default function Root() {
               onClick={handleStartExploring}
               className='bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-medium transition-colors shadow-lg'
             >
-              Start Exploring →
+              Start Exploring → (No sudo required 🔓)
             </button>
           </div>
         </div>
@@ -529,11 +529,13 @@ export default function Root() {
           </div>
           <p className='text-xl mb-8 text-indigo-100 max-w-2xl mx-auto'>
             Let's discuss your next project or explore collaboration
-            opportunities.
+            opportunities (I promise to respond faster than my deployment
+            pipeline 🚀).
           </p>
           <div className='bg-white/10 backdrop-blur-sm rounded-2xl p-8 max-w-md mx-auto border border-white/20'>
             <p className='mb-6 text-indigo-100'>
-              Feel free to reach out via email:
+              Feel free to reach out via email (I check it more often than my
+              GitHub notifications 📧):
             </p>
             <CustomLink
               href={CONTACT.mailto}
