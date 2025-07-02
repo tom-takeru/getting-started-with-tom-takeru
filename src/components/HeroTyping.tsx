@@ -9,10 +9,10 @@ export default function HeroTyping() {
       I'm a{' '}
       <Typewriter
         words={[
-          'tom-takeru!👋',
-          'Full-Stack Engineer 💻',
-          'Coffee Lover ☕',
-          'Board Game Enthusiast 🎲',
+          'tom-takeru!',
+          'Full-Stack Engineer!',
+          'Coffee Lover!',
+          'Board Game Enthusiast!',
         ]}
         loop={true}
         cursor
