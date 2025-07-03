@@ -3,14 +3,14 @@
 import CustomLink from '@/components/CustomLink';
 import HeroTyping from '@/components/HeroTyping';
 import {
-  SiDocker,
+  SiExpress,
+  SiGin,
   SiGithub,
   SiLinkedin,
   SiNextdotjs,
   SiQiita,
   SiReact,
   SiRubyonrails,
-  SiTailwindcss,
   SiTypescript,
   SiX,
 } from 'react-icons/si';
@@ -27,13 +27,13 @@ const SKILLS = [
   { name: 'React', icon: SiReact },
   { name: 'Next.js', icon: SiNextdotjs },
   { name: 'Ruby on Rails', icon: SiRubyonrails },
-  { name: 'Docker', icon: SiDocker },
-  { name: 'Tailwind CSS', icon: SiTailwindcss },
+  { name: 'Express', icon: SiExpress },
+  { name: 'Gin', icon: SiGin },
 ];
 
 const PROJECTS = [
   {
-    name: 'AI Discussion Service',
+    name: 'AI Discussion',
     emoji: '🤖',
     aria: 'robot',
     description: 'A platform for AI-powered discussions and collaboration.',
@@ -493,6 +493,7 @@ export default function Root() {
                 key={link.url}
                 href={link.url}
                 openInNewTab
+                showIcon={false}
                 className='group hover:scale-110 transition-transform duration-300'
                 aria-label={link.name}
               >
