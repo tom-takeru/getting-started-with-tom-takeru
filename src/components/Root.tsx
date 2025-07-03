@@ -3,6 +3,7 @@
 import CustomLink from '@/components/CustomLink';
 import HeroTyping from '@/components/HeroTyping';
 import {
+  SiBuymeacoffee,
   SiExpress,
   SiGin,
   SiGithub,
@@ -145,6 +146,7 @@ const ORGANIZATIONS = [
   {
     name: 'Habitat Hub',
     url: 'https://www.habitat-hub.com/',
+    githubUrl: 'https://github.com/habitat-hub', // Added GitHub Organization link
     emoji: '🏠',
     aria: 'house',
     description:
@@ -402,6 +404,21 @@ export default function Root() {
                   <div className='mt-3 text-sm text-gray-500'>
                     🔗 <strong>Explore:</strong> Visit the organization's
                     website to learn more about our mission and projects.
+                    {org.githubUrl && (
+                      <div className='mt-2'>
+                        <CustomLink
+                          href={org.githubUrl}
+                          openInNewTab
+                          className='text-indigo-600 hover:text-indigo-800 transition-colors inline-flex items-center'
+                        >
+                          <SiGithub
+                            className='w-4 h-4 mr-1'
+                            aria-label='GitHub'
+                          />
+                          GitHub Organization
+                        </CustomLink>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -552,6 +569,20 @@ export default function Root() {
           </div>
         </div>
       </section>
+
+      {/* Floating Buy Me a Coffee Button */}
+      <a
+        href='https://buymeacoffee.com/tom_takeru'
+        target='_blank'
+        rel='noopener noreferrer'
+        className='fixed bottom-4 right-4 bg-amber-900 hover:bg-amber-700 text-white p-3 md:p-6 rounded-full shadow-lg flex items-center justify-center transition-colors'
+        aria-label='Buy Me a Coffee'
+      >
+        <SiBuymeacoffee
+          className='w-6 h-6 md:w-10 md:h-10'
+          aria-hidden='true'
+        />
+      </a>
     </div>
   );
 }
