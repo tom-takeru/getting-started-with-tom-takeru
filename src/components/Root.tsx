@@ -176,6 +176,9 @@ export default function Root() {
               🚀 Getting Started with tom-takeru
             </span>
           </div>
+          <h1 className='text-lg sm:text-2xl md:text-4xl lg:text-5xl font-extrabold font-console tracking-wider whitespace-nowrap mb-4'>
+            Hi there! I'm tom-takeru
+          </h1>
           <HeroTyping />
           <p className='mt-6 text-lg text-gray-600 max-w-2xl mx-auto'>
             Step-by-step journey through my development skills, projects, and

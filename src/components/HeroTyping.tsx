@@ -8,7 +8,6 @@ export default function HeroTyping() {
     >
       <Typewriter
         words={[
-          "Hi there! I'm tom-takeru",
           'I build web applications',
           'Coffee fuels my coding',
           "Let's play board games!",
