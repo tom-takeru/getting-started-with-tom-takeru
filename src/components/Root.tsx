@@ -66,14 +66,7 @@ const PROJECTS = [
     description: 'This service is coming soon. Stay tuned!',
     href: undefined,
     disabled: true,
-    repos: [
-      {
-        name: 'Board Game Prototype (GitHub)',
-        url: 'https://github.com/habitat-hub/board-game-prototype',
-        icon: SiGithub,
-        label: 'github',
-      },
-    ],
+    repos: [],
   },
 ];
 
