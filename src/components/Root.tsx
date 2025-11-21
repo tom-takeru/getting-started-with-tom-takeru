@@ -60,12 +60,12 @@ const PROJECTS = [
     ],
   },
   {
-    name: 'Board Game Prototype Service (Coming Soon)',
+    name: 'Board Game Prototype Service',
     emoji: '🎲',
     aria: 'game',
-    description: 'This service is coming soon. Stay tuned!',
-    href: undefined,
-    disabled: true,
+    description: 'An online hub for sharing and testing board game prototypes.',
+    href: 'https://kibako.habitat-hub.com',
+    disabled: false,
     repos: [],
   },
 ];
