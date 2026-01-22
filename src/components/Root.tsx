@@ -16,6 +16,7 @@ import {
   SiTypescript,
   SiX,
 } from 'react-icons/si';
+import type { IconType } from 'react-icons';
 
 const ABOUT = {
   city: 'Japan',
@@ -71,7 +72,26 @@ const PROJECTS = [
   },
 ];
 
-const ARTICLES = [
+type ArticleLink = {
+  name: string;
+  url: string;
+  emoji: string;
+  aria: string;
+  description: string;
+  icon?: IconType;
+  logoSource?: string;
+};
+
+type SocialLink = {
+  name: string;
+  url: string;
+  emoji: string;
+  aria: string;
+  icon?: IconType;
+  logoSource?: string;
+};
+
+const ARTICLES: ArticleLink[] = [
   {
     name: 'Qiita',
     url: 'https://qiita.com/tom-takeru',
@@ -91,7 +111,7 @@ const ARTICLES = [
   },
 ];
 
-const LINKS = [
+const LINKS: SocialLink[] = [
   {
     name: 'GitHub',
     url: 'https://github.com/tom-takeru',
