@@ -2,6 +2,7 @@
 
 import CustomLink from '@/components/CustomLink';
 import HeroTyping from '@/components/HeroTyping';
+import { FaDev } from 'react-icons/fa';
 import {
   SiBuymeacoffee,
   SiExpress,
@@ -15,6 +16,7 @@ import {
   SiTypescript,
   SiX,
 } from 'react-icons/si';
+import type { IconType } from 'react-icons';
 
 const ABOUT = {
   city: 'Japan',
@@ -70,7 +72,26 @@ const PROJECTS = [
   },
 ];
 
-const ARTICLES = [
+type ArticleLink = {
+  name: string;
+  url: string;
+  emoji: string;
+  aria: string;
+  description: string;
+  icon?: IconType;
+  logoSource?: string;
+};
+
+type SocialLink = {
+  name: string;
+  url: string;
+  emoji: string;
+  aria: string;
+  icon?: IconType;
+  logoSource?: string;
+};
+
+const ARTICLES: ArticleLink[] = [
   {
     name: 'Qiita',
     url: 'https://qiita.com/tom-takeru',
@@ -86,11 +107,11 @@ const ARTICLES = [
     emoji: '🌐',
     aria: 'community',
     description: 'Blog posts and community articles on Forem.',
-    logoSource: 'https://logo.clearbit.com/forem.com',
+    icon: FaDev,
   },
 ];
 
-const LINKS = [
+const LINKS: SocialLink[] = [
   {
     name: 'GitHub',
     url: 'https://github.com/tom-takeru',
@@ -117,7 +138,7 @@ const LINKS = [
     url: 'https://forem.com/tom-takeru',
     emoji: '🌐',
     aria: 'community',
-    logoSource: 'https://logo.clearbit.com/forem.com',
+    icon: FaDev,
   },
   {
     name: 'Qiita Profile',
