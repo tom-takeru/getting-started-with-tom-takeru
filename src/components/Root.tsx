@@ -2,6 +2,7 @@
 
 import CustomLink from '@/components/CustomLink';
 import HeroTyping from '@/components/HeroTyping';
+import { FaDev } from 'react-icons/fa';
 import {
   SiBuymeacoffee,
   SiExpress,
@@ -86,7 +87,7 @@ const ARTICLES = [
     emoji: '🌐',
     aria: 'community',
     description: 'Blog posts and community articles on Forem.',
-    logoSource: 'https://logo.clearbit.com/forem.com',
+    icon: FaDev,
   },
 ];
 
@@ -117,7 +118,7 @@ const LINKS = [
     url: 'https://forem.com/tom-takeru',
     emoji: '🌐',
     aria: 'community',
-    logoSource: 'https://logo.clearbit.com/forem.com',
+    icon: FaDev,
   },
   {
     name: 'Qiita Profile',
