@@ -1,17 +1,18 @@
 import { Typewriter } from 'react-simple-typewriter';
 
-export default function HeroTyping() {
+type HeroTypingProps = {
+  ariaLabel: string;
+  words: readonly string[];
+};
+
+export default function HeroTyping({ ariaLabel, words }: HeroTypingProps) {
   return (
     <h1
       className='text-lg sm:text-2xl md:text-4xl lg:text-5xl font-extrabold font-console tracking-wider whitespace-nowrap'
-      aria-label='tom-takeru introduction'
+      aria-label={ariaLabel}
     >
       <Typewriter
-        words={[
-          'I build practical web products',
-          'I prototype, ship, and improve',
-          'I make tools for everyday use',
-        ]}
+        words={[...words]}
         loop={true}
         cursor
         cursorStyle='|'
