@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import type { IconType } from 'react-icons';
 import { FaDev, FaLinkedin } from 'react-icons/fa';
 import {
@@ -16,13 +17,9 @@ import {
 } from 'react-icons/si';
 import CustomLink from '@/components/CustomLink';
 import HeroTyping from '@/components/HeroTyping';
+import { LOCALES, type Locale, MESSAGES, resolveLocale } from '@/i18n';
 
-const ABOUT = {
-  city: 'Japan',
-  emoji: '🇯🇵',
-  description:
-    'I design and build web services that turn everyday ideas into useful products. I care about fast iteration, clear user flows, and systems that can keep improving after launch.',
-};
+const ABOUT_EMOJI = '🇯🇵';
 
 const SKILLS = [
   { name: 'TypeScript', icon: SiTypescript },
@@ -34,10 +31,8 @@ const SKILLS = [
 ];
 
 type ProjectLink = {
-  name: string;
   emoji: string;
   aria: string;
-  description: string;
   href: string;
   disabled: boolean;
   repos: {
@@ -48,33 +43,24 @@ type ProjectLink = {
   }[];
 };
 
-const PROJECTS: ProjectLink[] = [
+const PROJECT_LINKS: ProjectLink[] = [
   {
-    name: 'online board game prototype - KIBAKO',
     emoji: '🎲',
     aria: 'game die',
-    description:
-      'A browser-based prototype workspace for quickly trying, sharing, and refining board game ideas online.',
     href: 'https://kibako.habitat-hub.com/ja',
     disabled: false,
     repos: [],
   },
   {
-    name: 'おやのことば',
     emoji: '🌱',
     aria: 'seedling',
-    description:
-      'A service for preserving family words, memories, and small moments so they can be revisited over time.',
     href: 'https://oyanokotoba.habitat-hub.com/',
     disabled: false,
     repos: [],
   },
   {
-    name: 'メモる',
     emoji: '📝',
     aria: 'memo',
-    description:
-      'A lightweight memo tool for capturing thoughts quickly before they disappear from the flow of work.',
     href: 'https://quicklet.habitat-hub.com/',
     disabled: false,
     repos: [],
@@ -86,28 +72,16 @@ type ArticleLink = {
   url: string;
   emoji: string;
   aria: string;
-  description: string;
   icon?: IconType;
   logoSource?: string;
 };
 
-type SocialLink = {
-  name: string;
-  url: string;
-  emoji: string;
-  aria: string;
-  icon?: IconType;
-  logoSource?: string;
-};
-
-const ARTICLES: ArticleLink[] = [
+const ARTICLE_LINKS: ArticleLink[] = [
   {
     name: 'Qiita',
     url: 'https://qiita.com/tom-takeru',
     emoji: '📝',
     aria: 'memo',
-    description:
-      'Technical deep dives on monetization, AES encryption in Rails, and more.',
     icon: SiQiita,
   },
   {
@@ -115,45 +89,40 @@ const ARTICLES: ArticleLink[] = [
     url: 'https://forem.com/tom-takeru',
     emoji: '🌐',
     aria: 'community',
-    description: 'Blog posts and community articles on Forem.',
     icon: FaDev,
   },
 ];
+
+type SocialLink = {
+  name: string;
+  url: string;
+  icon: IconType;
+};
 
 const LINKS: SocialLink[] = [
   {
     name: 'GitHub',
     url: 'https://github.com/tom-takeru',
-    emoji: '🐙',
-    aria: 'github',
     icon: SiGithub,
   },
   {
     name: 'X (formerly Twitter)',
     url: 'https://x.com/tom__takeru',
-    emoji: '🐦',
-    aria: 'bird',
     icon: SiX,
   },
   {
     name: 'LinkedIn',
     url: 'https://www.linkedin.com/in/tom-takeru/',
-    emoji: '💼',
-    aria: 'briefcase',
     icon: FaLinkedin,
   },
   {
     name: 'Forem Profile',
     url: 'https://forem.com/tom-takeru',
-    emoji: '🌐',
-    aria: 'community',
     icon: FaDev,
   },
   {
     name: 'Qiita Profile',
     url: 'https://qiita.com/tom-takeru',
-    emoji: '📝',
-    aria: 'memo',
     icon: SiQiita,
   },
 ];
@@ -165,9 +134,37 @@ const CONTACT = {
   aria: 'email',
 };
 
-export default function Root() {
+type RootProps = {
+  initialLocale: Locale;
+};
+
+export default function Root({ initialLocale }: RootProps) {
+  const [locale, setLocale] = useState(initialLocale);
+  const messages = MESSAGES[locale];
+
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    const nextLocale = resolveLocale(
+      url.searchParams.get('lang'),
+      navigator.language,
+    );
+
+    setLocale(nextLocale);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
+
+  const handleLocaleChange = (nextLocale: Locale) => {
+    setLocale(nextLocale);
+
+    const url = new URL(window.location.href);
+    url.searchParams.set('lang', nextLocale);
+    window.history.replaceState(null, '', url);
+  };
+
   const handleStartExploring = () => {
-    // Smooth scroll to About Section
     const aboutSection = document.querySelector('#about-section');
     if (aboutSection) {
       aboutSection.scrollIntoView({
@@ -179,21 +176,45 @@ export default function Root() {
 
   return (
     <div className='min-h-screen bg-gray-50 text-gray-800 font-sans'>
+      <div className='fixed top-4 right-4 z-20 flex rounded-lg border border-white/60 bg-white/80 p-1 text-sm shadow-sm backdrop-blur'>
+        {LOCALES.map(localeOption => {
+          const isActive = localeOption === locale;
+
+          return (
+            <button
+              key={localeOption}
+              type='button'
+              onClick={() => handleLocaleChange(localeOption)}
+              className={`rounded-md px-3 py-2 font-medium transition-colors ${
+                isActive
+                  ? 'bg-indigo-600 text-white'
+                  : 'text-gray-700 hover:bg-indigo-50'
+              }`}
+              aria-pressed={isActive}
+            >
+              {MESSAGES[localeOption].localeName}
+            </button>
+          );
+        })}
+      </div>
+
       <section className='flex items-center justify-center h-svh bg-gradient-to-br from-blue-200 via-indigo-200 to-purple-200 text-gray-900 relative overflow-hidden'>
         <div className='absolute inset-0 bg-grid-pattern opacity-5' />
         <div className='text-center p-8 relative z-10'>
           <div className='mb-6'>
             <span className='inline-block px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-4'>
-              🚀 Getting Started with tom-takeru
+              🚀 {messages.badge}
             </span>
           </div>
           <h1 className='text-lg sm:text-2xl md:text-4xl lg:text-5xl font-extrabold font-console tracking-wider whitespace-nowrap mb-4'>
-            Hi there! I'm tom-takeru
+            {messages.greeting}
           </h1>
-          <HeroTyping />
+          <HeroTyping
+            ariaLabel={messages.heroTypingAria}
+            words={messages.heroTypingWords}
+          />
           <p className='mt-6 text-lg text-gray-600 max-w-2xl mx-auto'>
-            A concise introduction to the products I build, the stack I use, and
-            the teams I work with.
+            {messages.heroDescription}
           </p>
           <div className='mt-8 flex justify-center'>
             <button
@@ -201,7 +222,7 @@ export default function Root() {
               onClick={handleStartExploring}
               className='bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-medium transition-colors shadow-lg'
             >
-              Start Exploring →
+              {messages.startExploring} →
             </button>
           </div>
         </div>
@@ -214,7 +235,7 @@ export default function Root() {
               01
             </div>
             <h2 className='text-3xl font-bold'>
-              About the Developer
+              {messages.sections.about.title}
               <span role='img' aria-label='person' className='ml-2'>
                 🧑‍💻
               </span>
@@ -222,16 +243,17 @@ export default function Root() {
           </div>
           <div className='bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-lg'>
             <p className='leading-relaxed text-gray-700'>
-              I'm tom-takeru. Based in {ABOUT.city}
+              {messages.sections.about.introPrefix}{' '}
+              {messages.sections.about.city}
               <span role='img' aria-label='tokyo tower' className='mx-1'>
-                {ABOUT.emoji}
+                {ABOUT_EMOJI}
               </span>
-              , {ABOUT.description}
+              , {messages.sections.about.description}
             </p>
           </div>
           <div className='mt-6 text-sm text-gray-500'>
-            💡 <strong>Focus:</strong> shipping useful web products from early
-            prototype to maintainable service.
+            💡 <strong>{messages.sections.about.focusLabel}</strong>{' '}
+            {messages.sections.about.focus}
           </div>
         </div>
       </section>
@@ -244,15 +266,14 @@ export default function Root() {
                 02
               </div>
               <h2 className='text-3xl font-bold'>
-                Tech Stack Overview
+                {messages.sections.techStack.title}
                 <span role='img' aria-label='toolbox' className='ml-2'>
                   🧰
                 </span>
               </h2>
             </div>
             <p className='text-gray-600 max-w-2xl mx-auto'>
-              The main technologies I use to build product interfaces, APIs, and
-              production-ready web services.
+              {messages.sections.techStack.description}
             </p>
           </div>
           <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4'>
@@ -279,9 +300,7 @@ export default function Root() {
           <div className='mt-8 text-center'>
             <div className='inline-flex items-center px-4 py-2 bg-yellow-50 border border-yellow-200 rounded-lg text-sm text-yellow-800'>
               📋{' '}
-              <span className='ml-2'>
-                I focus on delivering value and impactful solutions.
-              </span>
+              <span className='ml-2'>{messages.sections.techStack.note}</span>
             </div>
           </div>
         </div>
@@ -294,78 +313,91 @@ export default function Root() {
               03
             </div>
             <h2 className='text-3xl font-bold'>
-              Featured Projects
+              {messages.sections.projects.title}
               <span role='img' aria-label='rocket' className='ml-2'>
                 🚀
               </span>
             </h2>
           </div>
           <p className='text-gray-600 max-w-2xl mx-auto'>
-            Current Habitat Hub products and prototypes, focused on practical
-            tools, everyday communication, and online play.
+            {messages.sections.projects.description}
           </p>
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6'>
-          {PROJECTS.map((project, index) => (
-            <div
-              key={project.name}
-              className={`bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col h-full transition-all duration-300 hover:shadow-lg hover:border-indigo-200 ${project.disabled ? 'opacity-60' : ''} relative overflow-hidden`}
-            >
-              <div className='absolute top-4 right-4 text-xs text-gray-400 font-mono'>
-                {String(index + 1).padStart(2, '0')}
-              </div>
-              <div className='mb-4'>
-                {project.href && !project.disabled ? (
-                  <CustomLink
-                    href={project.href}
-                    openInNewTab
-                    className='font-semibold text-lg text-indigo-600 hover:text-indigo-800 transition-colors'
-                  >
-                    {project.name}
-                    <span role='img' aria-label={project.aria} className='ml-2'>
-                      {project.emoji}
+          {PROJECT_LINKS.map((projectLink, index) => {
+            const project = messages.sections.projects.items[index];
+
+            return (
+              <div
+                key={project.name}
+                className={`bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col h-full transition-all duration-300 hover:shadow-lg hover:border-indigo-200 ${projectLink.disabled ? 'opacity-60' : ''} relative overflow-hidden`}
+              >
+                <div className='absolute top-4 right-4 text-xs text-gray-400 font-mono'>
+                  {String(index + 1).padStart(2, '0')}
+                </div>
+                <div className='mb-4'>
+                  {projectLink.href && !projectLink.disabled ? (
+                    <CustomLink
+                      href={projectLink.href}
+                      openInNewTab
+                      className='font-semibold text-lg text-indigo-600 hover:text-indigo-800 transition-colors'
+                    >
+                      {project.name}
+                      <span
+                        role='img'
+                        aria-label={projectLink.aria}
+                        className='ml-2'
+                      >
+                        {projectLink.emoji}
+                      </span>
+                    </CustomLink>
+                  ) : (
+                    <span className='font-semibold text-lg text-gray-400 cursor-not-allowed'>
+                      {project.name}
+                      <span
+                        role='img'
+                        aria-label={projectLink.aria}
+                        className='ml-2'
+                      >
+                        {projectLink.emoji}
+                      </span>
                     </span>
-                  </CustomLink>
-                ) : (
-                  <span className='font-semibold text-lg text-gray-400 cursor-not-allowed'>
-                    {project.name}
-                    <span role='img' aria-label={project.aria} className='ml-2'>
-                      {project.emoji}
-                    </span>
-                  </span>
+                  )}
+                </div>
+                <p
+                  className={`text-sm text-gray-600 flex-grow ${
+                    projectLink.disabled ? 'text-gray-400' : ''
+                  }`}
+                >
+                  {project.description}
+                </p>
+                {projectLink.repos.length > 0 && (
+                  <div className='mt-4 pt-4 border-t border-gray-100'>
+                    <div className='text-xs text-gray-500 mb-2'>
+                      📂 {messages.sections.projects.repositoryLabel}
+                    </div>
+                    <ul className='space-y-2'>
+                      {projectLink.repos.map(repo => (
+                        <li key={repo.url}>
+                          <CustomLink
+                            href={repo.url}
+                            openInNewTab
+                            className='text-sm text-indigo-600 hover:text-indigo-800 flex items-center space-x-2 transition-colors'
+                          >
+                            <repo.icon
+                              className='w-4 h-4'
+                              aria-label={repo.label}
+                            />
+                            <span>{repo.name}</span>
+                          </CustomLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 )}
               </div>
-              <p
-                className={`text-sm text-gray-600 flex-grow ${project.disabled ? 'text-gray-400' : ''}`}
-              >
-                {project.description}
-              </p>
-              {project.repos.length > 0 && (
-                <div className='mt-4 pt-4 border-t border-gray-100'>
-                  <div className='text-xs text-gray-500 mb-2'>
-                    📂 Repository:
-                  </div>
-                  <ul className='space-y-2'>
-                    {project.repos.map(repo => (
-                      <li key={repo.url}>
-                        <CustomLink
-                          href={repo.url}
-                          openInNewTab
-                          className='text-sm text-indigo-600 hover:text-indigo-800 flex items-center space-x-2 transition-colors'
-                        >
-                          <repo.icon
-                            className='w-4 h-4'
-                            aria-label={repo.label}
-                          />
-                          <span>{repo.name}</span>
-                        </CustomLink>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -376,60 +408,67 @@ export default function Root() {
               04
             </div>
             <h2 className='text-3xl font-bold'>
-              Learning Resources
+              {messages.sections.articles.title}
               <span role='img' aria-label='books' className='ml-2'>
                 📚
               </span>
             </h2>
           </div>
           <p className='text-gray-600 max-w-2xl mx-auto'>
-            Technical notes, implementation writeups, and learning logs from
-            product development.
+            {messages.sections.articles.description}
           </p>
         </div>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-          {ARTICLES.map((article, index) => (
-            <div
-              key={article.url}
-              className='bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-lg transition-all duration-300 hover:border-indigo-200 relative'
-            >
-              <div className='absolute top-4 right-4 text-xs text-gray-400 font-mono'>
-                {String(index + 1).padStart(2, '0')}
-              </div>
-              <div className='flex items-start space-x-4'>
-                <div className='flex-shrink-0 p-3 bg-indigo-50 rounded-lg'>
-                  {article.icon ? (
-                    <article.icon
-                      className='w-6 h-6 text-indigo-600'
-                      aria-label={article.name}
-                    />
-                  ) : article.logoSource ? (
-                    <img
-                      src={article.logoSource}
-                      alt={article.name}
-                      className='w-6 h-6'
-                    />
-                  ) : null}
+          {ARTICLE_LINKS.map((articleLink, index) => {
+            const article = messages.sections.articles.items[index];
+
+            return (
+              <div
+                key={articleLink.url}
+                className='bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-lg transition-all duration-300 hover:border-indigo-200 relative'
+              >
+                <div className='absolute top-4 right-4 text-xs text-gray-400 font-mono'>
+                  {String(index + 1).padStart(2, '0')}
                 </div>
-                <div className='flex-grow'>
-                  <CustomLink
-                    href={article.url}
-                    openInNewTab
-                    className='font-semibold text-lg text-indigo-600 hover:text-indigo-800 transition-colors inline-flex items-center'
-                  >
-                    {article.name}
-                    <span role='img' aria-label={article.aria} className='ml-2'>
-                      {article.emoji}
-                    </span>
-                  </CustomLink>
-                  <p className='mt-2 text-gray-600'>{article.description}</p>
-                  <div className='mt-3 text-sm text-indigo-600'>
-                    📖 Read articles →
+                <div className='flex items-start space-x-4'>
+                  <div className='flex-shrink-0 p-3 bg-indigo-50 rounded-lg'>
+                    {articleLink.icon ? (
+                      <articleLink.icon
+                        className='w-6 h-6 text-indigo-600'
+                        aria-label={articleLink.name}
+                      />
+                    ) : articleLink.logoSource ? (
+                      <img
+                        src={articleLink.logoSource}
+                        alt={articleLink.name}
+                        className='w-6 h-6'
+                      />
+                    ) : null}
+                  </div>
+                  <div className='flex-grow'>
+                    <CustomLink
+                      href={articleLink.url}
+                      openInNewTab
+                      className='font-semibold text-lg text-indigo-600 hover:text-indigo-800 transition-colors inline-flex items-center'
+                    >
+                      {articleLink.name}
+                      <span
+                        role='img'
+                        aria-label={articleLink.aria}
+                        className='ml-2'
+                      >
+                        {articleLink.emoji}
+                      </span>
+                    </CustomLink>
+                    <p className='mt-2 text-gray-600'>{article.description}</p>
+                    <div className='mt-3 text-sm text-indigo-600'>
+                      📖 {messages.sections.articles.readArticles} →
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -440,7 +479,7 @@ export default function Root() {
               05
             </div>
             <h2 className='text-3xl font-bold'>
-              Connect & Follow
+              {messages.sections.links.title}
               <span role='img' aria-label='link' className='ml-2'>
                 🔗
               </span>
@@ -456,18 +495,10 @@ export default function Root() {
                 className='group hover:scale-110 transition-transform duration-300'
                 aria-label={link.name}
               >
-                {link.icon ? (
-                  <link.icon
-                    className='w-8 h-8 text-gray-600 group-hover:text-indigo-600 transition-colors duration-300'
-                    aria-hidden='true'
-                  />
-                ) : link.logoSource ? (
-                  <img
-                    src={link.logoSource}
-                    alt={link.name}
-                    className='w-8 h-8'
-                  />
-                ) : null}
+                <link.icon
+                  className='w-8 h-8 text-gray-600 group-hover:text-indigo-600 transition-colors duration-300'
+                  aria-hidden='true'
+                />
               </CustomLink>
             ))}
           </div>
@@ -482,19 +513,18 @@ export default function Root() {
               06
             </div>
             <h2 className='text-3xl font-bold'>
-              Ready to Connect?
+              {messages.sections.contact.title}
               <span role='img' aria-label='mail' className='ml-2'>
                 📬
               </span>
             </h2>
           </div>
           <p className='text-xl mb-8 text-indigo-100 max-w-2xl mx-auto'>
-            Let's discuss product ideas, web development, or collaboration
-            opportunities.
+            {messages.sections.contact.description}
           </p>
           <div className='bg-white/10 backdrop-blur-sm rounded-2xl p-8 max-w-md mx-auto border border-white/20'>
             <p className='mb-6 text-indigo-100'>
-              Feel free to reach out via email:
+              {messages.sections.contact.prompt}
             </p>
             <CustomLink
               href={CONTACT.mailto}
@@ -510,13 +540,12 @@ export default function Root() {
         </div>
       </section>
 
-      {/* Floating Buy Me a Coffee Button */}
       <a
         href='https://buymeacoffee.com/tom_takeru'
         target='_blank'
         rel='noopener noreferrer'
         className='fixed bottom-4 right-4 bg-amber-900 hover:bg-amber-700 text-white p-3 md:p-6 rounded-full shadow-lg flex items-center justify-center transition-colors'
-        aria-label='Buy Me a Coffee'
+        aria-label={messages.buyMeCoffee}
       >
         <SiBuymeacoffee
           className='w-6 h-6 md:w-10 md:h-10'
