@@ -6,6 +6,7 @@
     "includes": [
       "**",
       "!**/.next",
+      "!next-env.d.ts",
       "!**/node_modules",
       "!**/.vscode",
       "!public/**/*.svg"
