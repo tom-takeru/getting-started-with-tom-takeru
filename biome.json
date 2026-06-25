@@ -40,6 +40,11 @@
       "lineWidth": 80
     }
   },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
   "linter": {
     "includes": ["**"],
     "rules": {

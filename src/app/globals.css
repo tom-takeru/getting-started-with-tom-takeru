@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --font-console:
+    "JetBrains Mono", "Fira Code", "Monaco", "Consolas", monospace;
+}
+
 @layer base {
   :root {
     --font-jetbrains-mono:
