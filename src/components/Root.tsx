@@ -21,7 +21,7 @@ const ABOUT = {
   city: 'Japan',
   emoji: '🇯🇵',
   description:
-    'I build web services with a passion for seamless UX and robust architectures. When I’m not coding, you’ll find me exploring new coffee shops or strategizing over a board game.',
+    'I design and build web services that turn everyday ideas into useful products. I care about fast iteration, clear user flows, and systems that can keep improving after launch.',
 };
 
 const SKILLS = [
@@ -33,39 +33,49 @@ const SKILLS = [
   { name: 'Gin', icon: SiGin },
 ];
 
-const PROJECTS = [
+type ProjectLink = {
+  name: string;
+  emoji: string;
+  aria: string;
+  description: string;
+  href: string;
+  disabled: boolean;
+  repos: {
+    name: string;
+    url: string;
+    icon: IconType;
+    label: string;
+  }[];
+};
+
+const PROJECTS: ProjectLink[] = [
   {
-    name: 'AI Discussion',
-    emoji: '🤖',
-    aria: 'robot',
-    description: 'A platform for AI-powered discussions and collaboration.',
-    href: 'https://ai-discussion.habitat-hub.com/about',
+    name: 'online board game prototype - KIBAKO',
+    emoji: '🎲',
+    aria: 'game die',
+    description:
+      'A browser-based prototype workspace for quickly trying, sharing, and refining board game ideas online.',
+    href: 'https://kibako.habitat-hub.com/ja',
     disabled: false,
     repos: [],
   },
   {
-    name: 'Habitat Hub Official Site',
-    emoji: '🏠',
-    aria: 'house',
+    name: 'おやのことば',
+    emoji: '🌱',
+    aria: 'seedling',
     description:
-      'The official website for Habitat Hub, showcasing our team, projects, and mission.',
-    href: 'https://www.habitat-hub.com/',
+      'A service for preserving family words, memories, and small moments so they can be revisited over time.',
+    href: 'https://oyanokotoba.habitat-hub.com/',
     disabled: false,
-    repos: [
-      {
-        name: 'Official Site (GitHub)',
-        url: 'https://github.com/habitat-hub/official-site',
-        icon: SiGithub,
-        label: 'github',
-      },
-    ],
+    repos: [],
   },
   {
-    name: 'Board Game Prototype Service',
-    emoji: '🎲',
-    aria: 'game',
-    description: 'An online hub for sharing and testing board game prototypes.',
-    href: 'https://kibako.habitat-hub.com',
+    name: 'メモる',
+    emoji: '📝',
+    aria: 'memo',
+    description:
+      'A lightweight memo tool for capturing thoughts quickly before they disappear from the flow of work.',
+    href: 'https://quicklet.habitat-hub.com/',
     disabled: false,
     repos: [],
   },
@@ -194,9 +204,8 @@ export default function Root() {
           </h1>
           <HeroTyping />
           <p className='mt-6 text-lg text-gray-600 max-w-2xl mx-auto'>
-            Step-by-step journey through my development skills, projects, and
-            insights. Perfect for understanding my approach to building modern
-            web applications.
+            A concise introduction to the products I build, the stack I use, and
+            the teams I work with.
           </p>
           <div className='mt-8 flex justify-center'>
             <button
@@ -204,7 +213,7 @@ export default function Root() {
               onClick={handleStartExploring}
               className='bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-medium transition-colors shadow-lg'
             >
-              Start Exploring → (No sudo required 🔓)
+              Start Exploring →
             </button>
           </div>
         </div>
@@ -233,8 +242,8 @@ export default function Root() {
             </p>
           </div>
           <div className='mt-6 text-sm text-gray-500'>
-            💡 <strong>Quick tip:</strong> This section gives you insight into
-            my background and development philosophy.
+            💡 <strong>Focus:</strong> shipping useful web products from early
+            prototype to maintainable service.
           </div>
         </div>
       </section>
@@ -254,9 +263,8 @@ export default function Root() {
               </h2>
             </div>
             <p className='text-gray-600 max-w-2xl mx-auto'>
-              Here are the main technologies I work with and explore in my
-              personal projects. These tools empower me to create scalable and
-              maintainable applications.
+              The main technologies I use to build product interfaces, APIs, and
+              production-ready web services.
             </p>
           </div>
           <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4'>
@@ -305,8 +313,8 @@ export default function Root() {
             </h2>
           </div>
           <p className='text-gray-600 max-w-2xl mx-auto'>
-            Explore my latest projects and see how I apply modern development
-            practices to solve real-world problems.
+            Current Habitat Hub products and prototypes, focused on practical
+            tools, everyday communication, and online play.
           </p>
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6'>
@@ -387,8 +395,8 @@ export default function Root() {
             </h2>
           </div>
           <p className='text-gray-600 max-w-2xl mx-auto'>
-            Learn about the teams and organizations I'm part of, and how we
-            collaborate to create impactful solutions.
+            The team behind these products and the place where we continue to
+            experiment, ship, and learn together.
           </p>
         </div>
         <div className='space-y-6'>
@@ -457,8 +465,8 @@ export default function Root() {
             </h2>
           </div>
           <p className='text-gray-600 max-w-2xl mx-auto'>
-            Check out my technical articles and insights to deepen your
-            understanding of modern development practices.
+            Technical notes, implementation writeups, and learning logs from
+            product development.
           </p>
         </div>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
@@ -563,14 +571,12 @@ export default function Root() {
             </h2>
           </div>
           <p className='text-xl mb-8 text-indigo-100 max-w-2xl mx-auto'>
-            Let's discuss your next project or explore collaboration
-            opportunities (I promise to respond faster than my deployment
-            pipeline 🚀).
+            Let's discuss product ideas, web development, or collaboration
+            opportunities.
           </p>
           <div className='bg-white/10 backdrop-blur-sm rounded-2xl p-8 max-w-md mx-auto border border-white/20'>
             <p className='mb-6 text-indigo-100'>
-              Feel free to reach out via email (I check it more often than my
-              GitHub notifications 📧):
+              Feel free to reach out via email:
             </p>
             <CustomLink
               href={CONTACT.mailto}

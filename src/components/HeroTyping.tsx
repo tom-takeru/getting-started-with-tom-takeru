@@ -8,9 +8,9 @@ export default function HeroTyping() {
     >
       <Typewriter
         words={[
-          'I build web applications',
-          'Coffee fuels my coding',
-          "Let's play board games!",
+          'I build practical web products',
+          'I prototype, ship, and improve',
+          'I make tools for everyday use',
         ]}
         loop={true}
         cursor

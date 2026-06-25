@@ -6,6 +6,7 @@ interface CustomLinkProps {
   openInNewTab?: boolean;
   className?: string;
   showIcon?: boolean;
+  'aria-label'?: string;
 }
 
 export default function CustomLink({
