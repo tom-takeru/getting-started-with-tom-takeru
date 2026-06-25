@@ -5,6 +5,7 @@ export type Locale = (typeof LOCALES)[number];
 export type Messages = (typeof MESSAGES)['en'];
 
 export const DEFAULT_LOCALE: Locale = 'en';
+export const REQUEST_LOCALE_HEADER = 'x-getting-started-locale';
 
 export function isLocale(value: string | null | undefined): value is Locale {
   return LOCALES.includes(value as Locale);
@@ -18,9 +19,13 @@ export function resolveLocale(
     return requestedLocale;
   }
 
-  const baseBrowserLanguage = browserLanguage?.split('-')[0];
-  if (isLocale(baseBrowserLanguage)) {
-    return baseBrowserLanguage;
+  for (const language of browserLanguage?.split(',') ?? []) {
+    const languageTag = language.split(';')[0]?.trim().toLowerCase();
+    const baseLanguage = languageTag?.split('-')[0];
+
+    if (isLocale(baseLanguage)) {
+      return baseLanguage;
+    }
   }
 
   return DEFAULT_LOCALE;
