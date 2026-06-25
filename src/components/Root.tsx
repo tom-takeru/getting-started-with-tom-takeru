@@ -165,18 +165,6 @@ const CONTACT = {
   aria: 'email',
 };
 
-const ORGANIZATIONS = [
-  {
-    name: 'Habitat Hub',
-    url: 'https://www.habitat-hub.com/',
-    githubUrl: 'https://github.com/habitat-hub', // Added GitHub Organization link
-    emoji: '🏠',
-    aria: 'house',
-    description:
-      'Habitat Hub is a team of four engineers developing websites and apps, and sharing IT articles on platforms like Qiita. Our mission is to bring small joys and greater convenience to people through technology, making everyday life a little happier and richer.',
-  },
-];
-
 export default function Root() {
   const handleStartExploring = () => {
     // Smooth scroll to About Section
@@ -381,81 +369,11 @@ export default function Root() {
         </div>
       </section>
 
-      <section className='py-16 px-4 max-w-4xl mx-auto'>
-        <div className='text-center mb-12'>
-          <div className='flex items-center justify-center mb-6'>
-            <div className='bg-indigo-100 text-indigo-600 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4'>
-              04
-            </div>
-            <h2 className='text-3xl font-bold'>
-              Organizations & Teams
-              <span role='img' aria-label='house' className='ml-2'>
-                🏠
-              </span>
-            </h2>
-          </div>
-          <p className='text-gray-600 max-w-2xl mx-auto'>
-            The team behind these products and the place where we continue to
-            experiment, ship, and learn together.
-          </p>
-        </div>
-        <div className='space-y-6'>
-          {ORGANIZATIONS.map((org, index) => (
-            <div
-              key={org.url}
-              className='bg-white rounded-xl shadow-sm border border-gray-100 p-8 hover:shadow-lg transition-all duration-300 hover:border-indigo-200'
-            >
-              <div className='flex items-start space-x-4'>
-                <div className='bg-indigo-50 text-indigo-600 rounded-lg w-12 h-12 flex items-center justify-center font-bold text-lg flex-shrink-0'>
-                  {String(index + 1).padStart(2, '0')}
-                </div>
-                <div className='flex-grow'>
-                  <CustomLink
-                    href={org.url}
-                    openInNewTab
-                    className='font-semibold text-xl text-indigo-600 hover:text-indigo-800 transition-colors inline-flex items-center'
-                  >
-                    {org.name}
-                    <span role='img' aria-label={org.aria} className='ml-2'>
-                      {org.emoji}
-                    </span>
-                  </CustomLink>
-                  <div className='mt-3 p-4 bg-gray-50 rounded-lg border-l-4 border-indigo-300'>
-                    <p className='text-gray-700 leading-relaxed'>
-                      {org.description}
-                    </p>
-                  </div>
-                  <div className='mt-3 text-sm text-gray-500'>
-                    🔗 <strong>Explore:</strong> Visit the organization's
-                    website to learn more about our mission and projects.
-                    {org.githubUrl && (
-                      <div className='mt-2'>
-                        <CustomLink
-                          href={org.githubUrl}
-                          openInNewTab
-                          className='text-indigo-600 hover:text-indigo-800 transition-colors inline-flex items-center'
-                        >
-                          <SiGithub
-                            className='w-4 h-4 mr-1'
-                            aria-label='GitHub'
-                          />
-                          GitHub Organization
-                        </CustomLink>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       <section className='py-16 px-4 max-w-4xl mx-auto bg-gray-50'>
         <div className='text-center mb-12'>
           <div className='flex items-center justify-center mb-6'>
             <div className='bg-indigo-100 text-indigo-600 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4'>
-              05
+              04
             </div>
             <h2 className='text-3xl font-bold'>
               Learning Resources
@@ -519,7 +437,7 @@ export default function Root() {
         <div className='max-w-4xl mx-auto px-4 text-center'>
           <div className='flex items-center justify-center mb-8'>
             <div className='bg-indigo-100 text-indigo-600 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4'>
-              06
+              05
             </div>
             <h2 className='text-3xl font-bold'>
               Connect & Follow
@@ -561,7 +479,7 @@ export default function Root() {
         <div className='max-w-4xl mx-auto px-4 text-center relative z-10'>
           <div className='flex items-center justify-center mb-6'>
             <div className='bg-white/20 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4'>
-              07
+              06
             </div>
             <h2 className='text-3xl font-bold'>
               Ready to Connect?
