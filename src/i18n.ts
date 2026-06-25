@@ -70,7 +70,7 @@ export const MESSAGES = {
         repositoryLabel: 'Repository:',
         items: [
           {
-            name: 'online board game prototype - KIBAKO',
+            name: 'Online Board Game Prototyping - KIBAKO',
             description:
               'A browser-based prototype workspace for quickly trying, sharing, and refining board game ideas online.',
           },
@@ -151,7 +151,7 @@ export const MESSAGES = {
         repositoryLabel: 'リポジトリ:',
         items: [
           {
-            name: 'オンラインボードゲームプロトタイプ - KIBAKO',
+            name: 'オンラインボドゲ試作 - KIBAKO',
             description:
               'ボードゲームのアイデアをブラウザ上ですばやく試し、共有し、改善するためのプロトタイプ用ワークスペースです。',
           },
