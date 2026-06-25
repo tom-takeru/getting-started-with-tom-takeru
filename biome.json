@@ -1,14 +1,21 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.2.2/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.5.1/schema.json",
   "extends": [],
-  "files": { "ignoreUnknown": true, "ignore": [".next", "node_modules"] },
-  "organizeImports": {
-    "enabled": true
+  "files": {
+    "ignoreUnknown": true,
+    "includes": [
+      "**",
+      "!**/.next",
+      "!**/node_modules",
+      "!**/.vscode",
+      "!public/**/*.svg"
+    ]
   },
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "formatter": {
     "enabled": true,
     "formatWithErrors": false,
-    "ignore": [],
+    "includes": ["**"],
     "indentWidth": 2,
     "indentStyle": "space",
     "lineWidth": 80
@@ -34,11 +41,10 @@
     }
   },
   "linter": {
-    "ignore": [],
+    "includes": ["**"],
     "rules": {
       "a11y": {
         "noAriaUnsupportedElements": "error",
-        "noBlankTarget": "error",
         "noDistractingElements": "error",
         "noNoninteractiveElementToInteractiveRole": "error",
         "noPositiveTabindex": "error",
@@ -57,14 +63,16 @@
         "noBannedTypes": "warn",
         "noExtraBooleanCast": "error",
         "noForEach": "warn",
-        "noMultipleSpacesInRegularExpressionLiterals": "error",
         "noStaticOnlyClass": "error",
         "noUselessConstructor": "error",
         "noUselessRename": "error",
         "noUselessSwitchCase": "error",
         "useLiteralKeys": "error",
         "useOptionalChain": "error",
-        "useSimplifiedLogicExpression": "error"
+        "useSimplifiedLogicExpression": "error",
+        "noAdjacentSpacesInRegex": "error",
+        "noUselessContinue": "error",
+        "noArguments": "error"
       },
       "correctness": {
         "noChildrenProp": "error",
@@ -76,7 +84,6 @@
         "noSelfAssign": "error",
         "noSetterReturn": "error",
         "noStringCaseMismatch": "error",
-        "noUnnecessaryContinue": "error",
         "noUnreachable": "error",
         "noInvalidConstructorSuper": "error",
         "noUnsafeOptionalChaining": "error",
@@ -85,27 +92,30 @@
         "noVoidElementsWithChildren": "error",
         "noVoidTypeReturn": "error",
         "useIsNan": "error",
-        "useValidForDirection": "error"
+        "useValidForDirection": "error",
+        "useValidTypeof": "error"
       },
       "performance": {
         "noDelete": "error"
       },
       "security": {
-        "noDangerouslySetInnerHtml": "warn"
+        "noDangerouslySetInnerHtml": "warn",
+        "noBlankTarget": "error"
       },
       "style": {
-        "noArguments": "error",
         "noNegationElse": "warn",
         "noNonNullAssertion": "warn",
         "noParameterAssign": "error",
         "noUnusedTemplateLiteral": "error",
-        "noVar": "error",
         "useConst": "error",
         "useExponentiationOperator": "error",
         "useNamingConvention": "off",
         "useSelfClosingElements": "error",
-        "useShorthandArrayType": "error",
-        "useTemplate": "error"
+        "useTemplate": "error",
+        "useConsistentArrayType": {
+          "level": "error",
+          "options": { "syntax": "shorthand" }
+        }
       },
       "suspicious": {
         "noArrayIndexKey": "error",
@@ -115,7 +125,6 @@
         "noClassAssign": "error",
         "noCommentText": "error",
         "noCompareNegZero": "error",
-        "noConsoleLog": "warn",
         "noDoubleEquals": "error",
         "noDuplicateCase": "error",
         "noDuplicateClassMembers": "error",
@@ -135,7 +144,8 @@
         "noUnsafeDeclarationMerging": "error",
         "useDefaultSwitchClauseLast": "error",
         "useGetterReturn": "error",
-        "useValidTypeof": "error"
+        "noVar": "error",
+        "noConsole": { "level": "warn", "options": { "allow": ["log"] } }
       }
     }
   }

@@ -1,10 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
   :root {
-    --font-jetbrains-mono: "JetBrains Mono", "Fira Code", "Monaco", "Consolas",
-      monospace;
+    --font-jetbrains-mono:
+      "JetBrains Mono", "Fira Code", "Monaco", "Consolas", monospace;
   }
 }

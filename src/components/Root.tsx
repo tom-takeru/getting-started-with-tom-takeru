@@ -1,14 +1,12 @@
 'use client';
 
-import CustomLink from '@/components/CustomLink';
-import HeroTyping from '@/components/HeroTyping';
-import { FaDev } from 'react-icons/fa';
+import type { IconType } from 'react-icons';
+import { FaDev, FaLinkedin } from 'react-icons/fa';
 import {
   SiBuymeacoffee,
   SiExpress,
   SiGin,
   SiGithub,
-  SiLinkedin,
   SiNextdotjs,
   SiQiita,
   SiReact,
@@ -16,7 +14,8 @@ import {
   SiTypescript,
   SiX,
 } from 'react-icons/si';
-import type { IconType } from 'react-icons';
+import CustomLink from '@/components/CustomLink';
+import HeroTyping from '@/components/HeroTyping';
 
 const ABOUT = {
   city: 'Japan',
@@ -131,7 +130,7 @@ const LINKS: SocialLink[] = [
     url: 'https://www.linkedin.com/in/tom-takeru/',
     emoji: '💼',
     aria: 'briefcase',
-    icon: SiLinkedin,
+    icon: FaLinkedin,
   },
   {
     name: 'Forem Profile',
