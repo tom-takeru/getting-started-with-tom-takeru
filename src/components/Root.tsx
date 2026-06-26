@@ -213,7 +213,7 @@ export default function Root({ initialLocale }: RootProps) {
             ariaLabel={messages.heroTypingAria}
             words={messages.heroTypingWords}
           />
-          <p className='mt-6 text-lg text-gray-600 max-w-2xl mx-auto'>
+          <p className='mt-6 text-lg text-gray-600 max-w-4xl mx-auto text-balance'>
             {messages.heroDescription}
           </p>
           <div className='mt-8 flex justify-center'>
