@@ -116,7 +116,7 @@ export const MESSAGES = {
   ja: {
     localeName: '日本語',
     alternateLocaleName: 'English',
-    badge: 'tom-takeru を知る',
+    badge: 'Getting Started with tom-takeru',
     greeting: 'こんにちは、tom-takeru です',
     heroTypingAria: 'tom-takeru の紹介',
     heroTypingWords: [
