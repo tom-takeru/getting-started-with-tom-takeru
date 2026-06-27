@@ -6,7 +6,7 @@ import { DEFAULT_LOCALE, REQUEST_LOCALE_HEADER, resolveLocale } from '@/i18n';
 export const metadata: Metadata = {
   title: 'Getting started with tom-takeru',
   description:
-    'A bilingual introduction to tom-takeru, featuring current web products, projects, technical articles, and contact links.',
+    'A bilingual introduction to tom-takeru, featuring web products, projects, technical articles, and contact links.',
 };
 
 export default async function RootLayout({
