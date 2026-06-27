@@ -106,7 +106,7 @@ const LINKS: SocialLink[] = [
     icon: SiGithub,
   },
   {
-    name: 'X (formerly Twitter)',
+    name: 'X',
     url: 'https://x.com/tom__takeru',
     icon: SiX,
   },

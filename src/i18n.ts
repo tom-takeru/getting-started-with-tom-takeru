@@ -60,13 +60,13 @@ export const MESSAGES = {
       techStack: {
         title: 'Tech Stack Overview',
         description:
-          'The main technologies I use to build product interfaces, APIs, and production-ready web services.',
+          'Technologies I use across product interfaces, APIs, and maintainable web services.',
         note: 'I focus on delivering value and impactful solutions.',
       },
       projects: {
         title: 'Featured Projects',
         description:
-          'Current Habitat Hub products and prototypes, focused on practical tools, everyday communication, and online play.',
+          'Habitat Hub products and prototypes focused on practical tools, everyday communication, and online play.',
         repositoryLabel: 'Repository:',
         items: [
           {
@@ -87,17 +87,18 @@ export const MESSAGES = {
         ],
       },
       articles: {
-        title: 'Learning Resources',
+        title: 'Technical Articles',
         description:
           'Technical notes, implementation writeups, and learning logs from product development.',
         readArticles: 'Read articles',
         items: [
           {
             description:
-              'Technical deep dives on monetization, AES encryption in Rails, and more.',
+              'Japanese writeups on design decisions, operations, security, and lessons from building products.',
           },
           {
-            description: 'Blog posts and community articles on Forem.',
+            description:
+              'English blog posts and community articles published on Forem.',
           },
         ],
       },
@@ -141,7 +142,7 @@ export const MESSAGES = {
       techStack: {
         title: '技術スタック',
         description:
-          'プロダクトの UI、API、本番運用できる Web サービスを作るために主に使っている技術です。',
+          'プロダクトの UI、API、保守しやすい Web サービスを作るために使っている技術です。',
         note: '価値が伝わり、実際に使われる解決策を届けることを重視しています。',
       },
       projects: {
@@ -168,17 +169,17 @@ export const MESSAGES = {
         ],
       },
       articles: {
-        title: '学習・技術記事',
+        title: '技術記事',
         description: 'プロダクト開発から得た技術メモ、実装記録、学習ログです。',
         readArticles: '記事を読む',
         items: [
           {
             description:
-              'マネタイズ、Rails での AES 暗号化などについての技術記事です。',
+              'Qiita で公開している日本語の技術記事です。プロダクト開発で得た設計判断、運用、セキュリティ、実装上の学びを整理しています。',
           },
           {
             description:
-              'Forem に投稿しているブログ記事とコミュニティ記事です。',
+              'Forem で公開している英語のブログ記事とコミュニティ記事です。',
           },
         ],
       },
