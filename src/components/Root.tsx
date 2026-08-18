@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import type { IconType } from 'react-icons';
 import { FaDev, FaLinkedin } from 'react-icons/fa';
+import { MdLanguage } from 'react-icons/md';
 import {
   SiBuymeacoffee,
   SiExpress,
@@ -175,8 +176,15 @@ export default function Root({ initialLocale }: RootProps) {
   };
 
   return (
-    <div className='min-h-screen bg-gray-50 text-gray-800 font-sans'>
-      <div className='fixed top-4 right-4 z-20 flex rounded-lg border border-white/60 bg-white/80 p-1 text-sm shadow-sm backdrop-blur'>
+    <div className='relative min-h-screen bg-gray-50 text-gray-800 font-sans'>
+      <fieldset
+        className='absolute top-4 right-4 z-20 inline-flex items-center gap-0.5 rounded-full border border-gray-900/10 bg-white/70 p-0.5 shadow-md backdrop-blur-sm'
+        aria-label='Select language'
+      >
+        <MdLanguage
+          className='ml-0.5 h-3.5 w-3.5 text-gray-500'
+          aria-hidden='true'
+        />
         {LOCALES.map(localeOption => {
           const isActive = localeOption === locale;
 
@@ -185,18 +193,20 @@ export default function Root({ initialLocale }: RootProps) {
               key={localeOption}
               type='button'
               onClick={() => handleLocaleChange(localeOption)}
-              className={`rounded-md px-3 py-2 font-medium transition-colors ${
+              className={`h-7 min-w-8 rounded-full px-1.5 text-[11px] font-semibold tracking-wide transition-colors ${
                 isActive
-                  ? 'bg-indigo-600 text-white'
-                  : 'text-gray-700 hover:bg-indigo-50'
+                  ? 'bg-gray-900 text-white shadow-sm'
+                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
               }`}
               aria-pressed={isActive}
+              aria-label={MESSAGES[localeOption].localeName}
+              title={MESSAGES[localeOption].localeName}
             >
-              {MESSAGES[localeOption].localeName}
+              {localeOption.toUpperCase()}
             </button>
           );
         })}
-      </div>
+      </fieldset>
 
       <section className='flex items-center justify-center h-svh bg-gradient-to-br from-blue-200 via-indigo-200 to-purple-200 text-gray-900 relative overflow-hidden'>
         <div className='absolute inset-0 bg-grid-pattern opacity-5' />
@@ -544,7 +554,7 @@ export default function Root({ initialLocale }: RootProps) {
         href='https://buymeacoffee.com/tom_takeru'
         target='_blank'
         rel='noopener noreferrer'
-        className='fixed bottom-4 right-4 bg-amber-900 hover:bg-amber-700 text-white p-3 md:p-6 rounded-full shadow-lg flex items-center justify-center transition-colors'
+        className='fixed bottom-4 right-4 z-30 bg-amber-900 hover:bg-amber-700 text-white p-3 md:p-6 rounded-full shadow-lg flex items-center justify-center transition-colors'
         aria-label={messages.buyMeCoffee}
       >
         <SiBuymeacoffee
